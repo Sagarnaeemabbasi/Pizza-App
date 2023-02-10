@@ -9,7 +9,8 @@ import {
 import MyModal from '../Components/MyModal';
 import Styles from '../Styling';
 import Loader from '../Components/Loader';
-import {loginUser} from '../Firebase/FirebaseMethods';
+import {useDispatch} from 'react-redux';
+import { loginUser } from '../Redux/Actions/loginuser';
 
 export default function Login({navigation}) {
   const [details, setDetails] = useState({});
@@ -17,7 +18,7 @@ export default function Login({navigation}) {
   const [buttonBg, setButtonBg] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const dispatch = useDispatch();
   const moveToSignUp = () => {
     navigation.navigate('SignUp');
   };
@@ -33,29 +34,9 @@ export default function Login({navigation}) {
       setModalText('Please write the accurate Email and Password');
       setLoading(false);
     } else {
-      loginUser(details)
-        .then(succ => {
-          if (succ.user.uid === 'gjZnqz1q3OS36BEvITb4Hv3bJwo1') {
-            navigation.navigate('AdminScreen');
-          } else {
-            navigation.navigate('home');
-          }
-
-          setLoading(false);
-          ToastAndroid.show('Login Successfully', 3000);
-        })
-        .catch(error => {
-          // const errMessage = error.code;
-          console.log(error);
-
-          setLoading(false);
-          setModalVisible(true);
-          setModalText(error);
-        });
-
       setButtonBg(true);
+      dispatch(loginUser(details.email,details.password))
     }
-
   };
 
   return (

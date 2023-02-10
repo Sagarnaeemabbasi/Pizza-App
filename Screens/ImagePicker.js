@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
-import Styles from '../../Styling';
+import Styles from '../Styling';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 export default function PickImage() {
@@ -11,10 +11,21 @@ export default function PickImage() {
     const res = await launchCamera({
       mediaType: 'photo',
     });
-    console.log(res);
-    
+    const {uri} = res.assets[0];
+    console.log(uri);
+
+    setPicImage(uri);
   };
-  const goToGallery = () => {};
+
+  const goToGallery = async () => {
+    const res = await launchImageLibrary({
+      mediaType: 'mixed',
+    });
+    const {uri} = res.assets[0];
+    console.log(uri);
+
+    setPicImage(uri);
+  };
   return (
     <View>
       <Text style={[Styles.textCenter, Styles.m2, Styles.fs1]}>

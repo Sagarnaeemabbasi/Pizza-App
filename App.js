@@ -1,10 +1,13 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Provider} from 'react-redux';
 import AppRouter from './AppRouter';
+import store from './Redux/store';
 
 function App() {
   return (
-    <AppRouter/>
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
   );
 }
 export default App;

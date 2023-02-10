@@ -475,7 +475,6 @@ const styling = {
     padding: 3,
     fontWeight: 'bold',
     textAlign: 'center',
-    left: -10,
     shadowOffset: {
       width: 0,
       height: 4,

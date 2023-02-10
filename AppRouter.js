@@ -4,39 +4,20 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './Screens/Home';
-import SignUp from './Screens/Signup';
 import Login from './Screens/Login';
-import AdminScreen from './Screens/AdminScreens/AdminScreen';
-import {Button, FlatList} from 'react-native';
-import SinglePizza from './Screens/UserScreens/SinglePizza';
+import SignUp from './Screens/Signup';
+import ImagePicker from './Screens/ImagePicker';
 
 const Stack = createNativeStackNavigator();
 
 function AppRouter() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="AdminScreen">
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="LogIn" component={Login} />
-        <Stack.Screen name="home" component={Home} />
-        <Stack.Screen name="Details" component={SinglePizza} />
-        <Stack.Screen
-          name="AdminScreen"
-          options={{
-            headerTitle: 'Admin Screen',
-            headerStyle: {backgroundColor: 'white'},
-            headerTitleAlign: 'center',
-            headerTitleStyle:{fontSize:20},
-            // headerLeft: () => (
-            //   <Button
-            //     onPress={() => alert('This is a button!')}
-            //     title="Info"
-            //     color="#fff"
-            //   />
-            // ),
-          }}
-          component={AdminScreen}
-        />
+      <Stack.Navigator initialRouteName="LogIn">
+        <Stack.Screen name="SignUp" options={{headerShown:false}} component={SignUp} />
+        <Stack.Screen name="LogIn" options={{headerShown:false}} component={Login} />
+        <Stack.Screen name="home" options={{headerShown:false}} component={Home} />
+        <Stack.Screen name="image" options={{headerShown:false}} component={ImagePicker} />
       </Stack.Navigator>
     </NavigationContainer>
   );
